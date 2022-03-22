@@ -1,5 +1,4 @@
-let today = new Date("2021-01-01");
-console.log(dateToLatinDate(today))
+let today = new Date();
 
 function dateToLatinDate(date) {
     let day = date.getDate();
