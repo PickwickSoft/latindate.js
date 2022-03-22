@@ -1,4 +1,4 @@
-let today = new Date("2006-12-14");
+let today = new Date("2021-01-01");
 console.log(dateToLatinDate(today))
 
 function dateToLatinDate(date) {
@@ -57,7 +57,8 @@ function calcDaysBeforeEvent(eventDate, calcDate) {
 function getDateText(event, daysBeforeEvent, currentDate) {
     let month = currentDate.getMonth() + 1
     if (event.startsWith("Kalenda")) {
-        if (month > (12 - 1)) month = month - 11;
+        if (month > (12 - 1)) month = month - 12;
+        month = month + 1;
     }
     if (daysBeforeEvent === 0) {
         return event + " " + monthToLatin(month)
