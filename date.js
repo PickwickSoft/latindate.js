@@ -1,5 +1,3 @@
-let today = new Date();
-
 function dateToLatinDate(date) {
     let day = date.getDate();
     let idus = getIdus(date.getMonth());
@@ -10,6 +8,8 @@ function dateToLatinDate(date) {
         return getDateText("Idus", 0, date);
     } else if (day === idus - 1) {
         return getDateText("Idus", 1, date)
+    } else if (day === 1) {
+        return getDateText("Kalendas", 0, date)
     } else if (day < idus) {
         if (day > nonae) {
             return getDateText("Idus", calcDaysBeforeEvent(idus, day), date)
