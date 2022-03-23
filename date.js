@@ -14,11 +14,11 @@ function dateToLatinDate(date) {
         if (day > nonae) {
             return getDateText("Idus", calcDaysBeforeEvent(idus, day), date)
         } else if (day === nonae) {
-            return getDateText("Nonae", 0, date)
+            return getDateText("Nonas", 0, date)
         } else if (day === nonae - 1) {
-            return getDateText("Nonae", 1, date)
+            return getDateText("Nonas", 1, date)
         } else {
-            return getDateText("Nonae", calcDaysBeforeEvent(nonae, day), date)
+            return getDateText("Nonas", calcDaysBeforeEvent(nonae, day), date)
         }
     } else if (day === lastDayOfMonth) {
         return getDateText("Kalendas", 1, date)
@@ -62,7 +62,7 @@ function getDateText(event, daysBeforeEvent, currentDate) {
     if (daysBeforeEvent === 0) {
         return event + " " + monthToLatin(month)
     } else if (daysBeforeEvent === 1) {
-        return "Praediem " + event + " " + monthToLatin(month)
+        return "Pridie " + event + " " + monthToLatin(month)
     }
     return "ante diem " + intToLatinTxtAkk(daysBeforeEvent) + " " + event + " " + monthToLatin(month)
 }
@@ -78,7 +78,7 @@ function monthToLatin(month) {
 
 function intToLatinTxtAkk(int) {
     let latNumber = "";
-    if (int >= 10 && int < 20) {
+    if (int >= 10 && int < 20 && int !== 11 && int !== 12) {
         latNumber += "decimum ";
         int = int - 10;
     }
@@ -111,6 +111,11 @@ function intToLatinTxtAkk(int) {
         case 9:
             latNumber += "nonum";
             break;
+        case 11:
+            latNumber += "undecimum";
+            break;
+        case 12:
+            latNumber += "duodecimum";
     }
     return latNumber.trim()
 }
