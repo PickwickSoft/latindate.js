@@ -1,3 +1,5 @@
+console.log(dateToLatinDate(new Date("2020-12-01")))
+
 function dateToLatinDate(date) {
     let day = date.getDate();
     let idus = getIdus(date.getMonth());
@@ -54,9 +56,9 @@ function calcDaysBeforeEvent(eventDate, calcDate) {
 }
 
 function getDateText(event, daysBeforeEvent, currentDate) {
-    let month = currentDate.getMonth() + 1
-    if (event.startsWith("Kalenda")) {
-        if (month > (12 - 1)) month = month - 12;
+    let month = currentDate.getMonth()
+    if (event.startsWith("Kalendas") && (daysBeforeEvent !== 0)) {
+        if (month === 11) month = -1;
         month = month + 1;
     }
     if (daysBeforeEvent === 0) {
@@ -73,7 +75,7 @@ function getLatinMonths() {
 }
 
 function monthToLatin(month) {
-    return getLatinMonths()[month - 1]
+    return getLatinMonths()[month]
 }
 
 function intToLatinTxtAkk(int) {
