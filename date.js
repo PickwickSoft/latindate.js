@@ -1,5 +1,3 @@
-let today = new Date();
-
 function dateToLatinDate(date) {
     let day = date.getDate();
     let idus = getIdus(date.getMonth());
