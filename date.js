@@ -111,7 +111,7 @@ function intToLatinTxtAkk(int) {
             latNumber += "octavum";
             break;
         case 9:
-            latNumber += "nonum";
+            latNumber += "novum";
             break;
         case 11:
             latNumber += "undecimum";
