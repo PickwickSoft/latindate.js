@@ -1,4 +1,4 @@
-console.log(dateToLatinDate(new Date("2020-12-01")))
+console.log(dateToLatinDate(new Date("2022-12-05")))
 
 function dateToLatinDate(date) {
     let day = date.getDate();
@@ -7,16 +7,16 @@ function dateToLatinDate(date) {
     let lastDayOfMonth = getLastDayOfMonth(date.getMonth(), date.getFullYear());
 
     if (day === idus) {
-        return getDateText("Idus", 0, date);
+        return getDateText("Idibus", 0, date);
     } else if (day === idus - 1) {
         return getDateText("Idus", 1, date)
     } else if (day === 1) {
-        return getDateText("Kalendas", 0, date)
+        return getDateText("Kalendis", 0, date)
     } else if (day < idus) {
         if (day > nonae) {
             return getDateText("Idus", calcDaysBeforeEvent(idus, day), date)
         } else if (day === nonae) {
-            return getDateText("Nonas", 0, date)
+            return getDateText("Nonis", 0, date)
         } else if (day === nonae - 1) {
             return getDateText("Nonas", 1, date)
         } else {
@@ -57,25 +57,29 @@ function calcDaysBeforeEvent(eventDate, calcDate) {
 
 function getDateText(event, daysBeforeEvent, currentDate) {
     let month = currentDate.getMonth()
-    if (event.startsWith("Kalendas") && (daysBeforeEvent !== 0)) {
+    if (event.startsWith("Kalend") && (daysBeforeEvent !== 0)) {
         if (month === 11) month = -1;
         month = month + 1;
     }
     if (daysBeforeEvent === 0) {
-        return event + " " + monthToLatin(month)
+        return event + " " + monthToLatin(month, true)
     } else if (daysBeforeEvent === 1) {
         return "Pridie " + event + " " + monthToLatin(month)
     }
     return "ante diem " + intToLatinTxtAkk(daysBeforeEvent) + " " + event + " " + monthToLatin(month)
 }
 
-function getLatinMonths() {
+function getLatinMonths(inAbl) {
+    if (inAbl) {
+        return ["Ianuariis", "Februariis", "Martiis", "Aprilibus", "Maiis", "Iuniis", "Iuliis", "Sextilibus",
+            "Septembribus", "Octobribus", "Novembribus", "Decembribus"]
+    }
     return ["Ianuarias", "Februarias", "Martias", "Apriles", "Maias", "Iunias", "Iulias", "Sextiles",
         "Septembres", "Octobres", "Novembres", "Decembres"]
 }
 
-function monthToLatin(month) {
-    return getLatinMonths()[month]
+function monthToLatin(month, inAbl=false) {
+    return getLatinMonths(inAbl)[month]
 }
 
 function intToLatinTxtAkk(int) {
